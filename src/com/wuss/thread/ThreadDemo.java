@@ -8,6 +8,14 @@ package com.wuss.thread;
  */
 public class ThreadDemo {
     public static void main(String[] args) {
+        testGetThreadName();
+        System.out.println("----------------------");
+        new Thread2("线程1").start();
+        new Thread2("线程2").start();
+
+    }
+
+    private static void testGetThreadName() {
         Thread1 thread1 = new Thread1("线程1");
         thread1.start();
         thread1.interrupt();
@@ -24,6 +32,19 @@ public class ThreadDemo {
         public void run() {
             System.out.println("当前线程的名字："+getName());
             System.out.println("当前线程的名字："+currentThread().getName());
+        }
+    }
+
+    static class Thread2 extends Thread{
+        Thread2(String name){
+            super(name);
+        }
+        private int i;
+
+        public void run() {
+            for(;i<10;i++){
+                System.out.println(getName()+"\ti = " + i);
+            }
         }
     }
 }

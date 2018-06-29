@@ -1,0 +1,10 @@
+1.Thread
+    currentThread :当前正在执行的线程
+    getName:线程的名字
+
+2. 继承自 Thread 和 Runnable 接口的比较
+    a) 实现 Runnable 接口：
+      还可以继承其他的类
+      多个线程共享同一个 target 对象，适合多个线程处理同一份资源
+    b> 继承自Thread:
+      不能继承其他的类
