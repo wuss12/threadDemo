@@ -10,7 +10,7 @@ public class RtnThread implements Callable<Integer> {
         for(int i=0;i<10;i++){
             sum += i;
         }
-        System.out.println(Thread.currentThread().getName()+"1+...+9 = ");
+        System.out.println(Thread.currentThread().getName()+" 1+...+9 = ");
         return sum;
     }
 
