@@ -12,13 +12,15 @@ public class Account {
         this.balance = balance;
     }
     public void draw(BigDecimal drawAmount){
+        System.out.println(getNameInfo()+" 尝试获取锁...");
         lock.lock();
+        System.out.println(getNameInfo()+" 获取锁...");
         try {
             if(balance.compareTo(drawAmount) >= 0){
                 System.out.println(Thread.currentThread().getName()+"取钱成功，取钱："+drawAmount);
                 Thread.sleep(100);
                 balance = balance.subtract(drawAmount);
-                System.out.println("还剩 ："+balance);
+                System.out.println(getNameInfo()+"：还剩 ："+balance);
             }else {
                 System.out.println(Thread.currentThread().getName()+" 取钱失败。");
             }
@@ -26,8 +28,12 @@ public class Account {
         } catch (InterruptedException e) {
             e.printStackTrace();
         } finally {
+            System.out.println(getNameInfo()+" 释放锁...");
             lock.unlock();
         }
+    }
+    private String getNameInfo(){
+        return Thread.currentThread().getName();
     }
 
     public String getAccountNo() {
